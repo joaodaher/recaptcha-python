@@ -5,7 +5,7 @@ API_SERVER="https://www.google.com/recaptcha/api.js"
 VERIFY_SERVER="https://www.google.com/recaptcha/api/siteverify"
 
 
-def displayhtml(public_key, noscript=True):
+def displayhtml(public_key, noscript=True, lang='pt-BR'):
     """
     Gets the HTML to display for reCAPTCHA
 
@@ -13,9 +13,9 @@ def displayhtml(public_key, noscript=True):
     """
 
     html = """
-    <script src="{recaptcha_server}" async defer></script>
+    <script src="{recaptcha_server}?hl={lang}" async defer></script>
     <div class="g-recaptcha" data-sitekey="{recaptcha_site_key}"></div>
-    """.format(recaptcha_server=API_SERVER, recaptcha_site_key=public_key)
+    """.format(recaptcha_server=API_SERVER, recaptcha_site_key=public_key, lang=lang)
 
     if noscript:
         html += """
